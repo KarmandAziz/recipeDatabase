@@ -15,7 +15,7 @@ public class RecipeIngredient {
     @GeneratedValue(generator = GENERATOR)
     @GenericGenerator(name = GENERATOR, strategy = UUID_GENERATOR)
     private String id;
-    @ManyToOne(
+    @ManyToMany(
             cascade = {CascadeType.DETACH, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
@@ -23,6 +23,10 @@ public class RecipeIngredient {
     private Ingredient ingredient;
     private double amount;
     private Measurement measurement;
+    @ManyToOne(
+            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
+            fetch = FetchType.LAZY
+    )
     private Recipe recipe;
 
     public RecipeIngredient() {

@@ -6,29 +6,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import java.util.Objects;
 
 import static com.example.recipeDatabase.model.constants.EntityConstants.GENERATOR;
 import static com.example.recipeDatabase.model.constants.EntityConstants.UUID_GENERATOR;
 
 @Entity
-public class Ingredient {
+public class RecipeInstruction {
 
     @Id
     @GeneratedValue(generator = GENERATOR)
     @GenericGenerator(name = GENERATOR, strategy = UUID_GENERATOR)
     @Column(updatable = false)
     private String id;
-    @Column(unique = true)
-    private String ingredientName;
+    private String instructions;
 
-    public Ingredient(String id, String ingredientName) {
+    public RecipeInstruction(String id, String instructions) {
         this.id = id;
-        this.ingredientName = ingredientName;
+        this.instructions = instructions;
     }
 
-    public Ingredient() {
+    public RecipeInstruction() {
     }
 
     public String getId() {
@@ -39,32 +37,32 @@ public class Ingredient {
         this.id = id;
     }
 
-    public String getIngredientName() {
-        return ingredientName;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ingredient that = (Ingredient) o;
-        return Objects.equals(ingredientName, that.ingredientName);
+        RecipeInstruction that = (RecipeInstruction) o;
+        return Objects.equals(instructions, that.instructions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ingredientName);
+        return Objects.hash(instructions);
     }
 
     @Override
     public String toString() {
-        return "Ingredient{" +
+        return "RecipeInstruction{" +
                 "id='" + id + '\'' +
-                ", ingredientName='" + ingredientName + '\'' +
+                ", instructions='" + instructions + '\'' +
                 '}';
     }
 }
