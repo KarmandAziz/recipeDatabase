@@ -7,8 +7,7 @@ import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.example.recipeDatabase.model.constants.EntityConstants.GENERATOR;
-import static com.example.recipeDatabase.model.constants.EntityConstants.UUID_GENERATOR;
+import static com.example.recipeDatabase.model.constants.EntityConstants.*;
 
 @Entity
 public class RecipeCategory {
@@ -21,8 +20,12 @@ public class RecipeCategory {
     private String category;
     @ManyToMany(
             cascade = {CascadeType.REFRESH, CascadeType.DETACH},
-            fetch = FetchType.LAZY,
-            mappedBy = "categories"
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+            name = "recipe_recipe_category",
+            joinColumns = @JoinColumn(name = "fk_recipe_id",table = "recipe_recipe_category"),
+            inverseJoinColumns = @JoinColumn(name = "fk_recipe_category_id",table = "recipe_recipe_category")
     )
     private Set<Recipe> recipes;
 

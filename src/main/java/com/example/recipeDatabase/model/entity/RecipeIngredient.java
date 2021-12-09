@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+import java.util.Objects;
+
 import static com.example.recipeDatabase.model.constants.EntityConstants.GENERATOR;
 import static com.example.recipeDatabase.model.constants.EntityConstants.UUID_GENERATOR;
 
@@ -15,19 +17,30 @@ public class RecipeIngredient {
     @GeneratedValue(generator = GENERATOR)
     @GenericGenerator(name = GENERATOR, strategy = UUID_GENERATOR)
     private String id;
-    @ManyToMany(
+
+    @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "fk_ingredient_id")
     private Ingredient ingredient;
+
     private double amount;
     private Measurement measurement;
     @ManyToOne(
-            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "fk_recipe_id")
     private Recipe recipe;
+
+    public RecipeIngredient(String id, Ingredient ingredient, double amount, Measurement measurement, Recipe recipe) {
+        this.id = id;
+        this.ingredient = ingredient;
+        this.amount = amount;
+        this.measurement = measurement;
+        this.recipe = recipe;
+    }
 
     public RecipeIngredient() {
     }
@@ -62,5 +75,29 @@ public class RecipeIngredient {
 
     public void setMeasurement(Measurement measurement) {
         this.measurement = measurement;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RecipeIngredient that = (RecipeIngredient) o;
+        return Double.compare(that.amount, amount) == 0 && measurement == that.measurement;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, measurement);
+    }
+
+    @Override
+    public String toString() {
+        return "RecipeIngredient{" +
+                "id='" + id + '\'' +
+                ", ingredient=" + ingredient +
+                ", amount=" + amount +
+                ", measurement=" + measurement +
+                ", recipe=" + recipe +
+                '}';
     }
 }

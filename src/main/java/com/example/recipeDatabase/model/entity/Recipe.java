@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import static com.example.recipeDatabase.model.constants.EntityConstants.GENERATOR;
 import static com.example.recipeDatabase.model.constants.EntityConstants.UUID_GENERATOR;
@@ -17,19 +19,30 @@ public class Recipe {
     @Column(updatable = false)
     private String id;
     private String recipeName;
-    @ManyToMany(
-            cascade = {CascadeType.REFRESH,CascadeType.PERSIST},
-            fetch = FetchType.LAZY
+
+    @OneToMany(
+            cascade = {CascadeType.REFRESH,CascadeType.DETACH},
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            mappedBy = "recipe"
     )
     private List<RecipeIngredient> recipeIngredients;
-    private RecipeInstruction instruction;
-    @ManyToMany(
-            cascade = {CascadeType.REFRESH, CascadeType.DETACH}
 
+    @OneToOne(
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            fetch = FetchType.LAZY
     )
-    private List<RecipeCategory> categories;
+    @JoinColumn(name = "fk_instruction_id")
+    private RecipeInstruction instruction;
 
-    public Recipe(String id, String recipeName, List<RecipeIngredient> recipeIngredients, RecipeInstruction instruction, List<RecipeCategory> categories) {
+    @ManyToMany(
+            cascade = {CascadeType.REFRESH, CascadeType.DETACH},
+            fetch = FetchType.LAZY,
+            mappedBy = "recipes"
+    )
+    private Set<RecipeCategory> categories;
+
+    public Recipe(String id, String recipeName, List<RecipeIngredient> recipeIngredients, RecipeInstruction instruction, Set<RecipeCategory> categories) {
         this.id = id;
         this.recipeName = recipeName;
         this.recipeIngredients = recipeIngredients;
@@ -72,11 +85,35 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public List<RecipeCategory> getCategories() {
+    public Set<RecipeCategory> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<RecipeCategory> categories) {
+    public void setCategories(Set<RecipeCategory> categories) {
         this.categories = categories;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recipe recipe = (Recipe) o;
+        return Objects.equals(recipeName, recipe.recipeName) && Objects.equals(instruction, recipe.instruction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(recipeName, instruction);
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id='" + id + '\'' +
+                ", recipeName='" + recipeName + '\'' +
+                ", recipeIngredients=" + recipeIngredients +
+                ", instruction=" + instruction +
+                ", categories=" + categories +
+                '}';
     }
 }
