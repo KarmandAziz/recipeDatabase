@@ -1,6 +1,7 @@
 package com.example.recipeDatabase.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,8 +30,7 @@ public class Recipe {
     private List<RecipeIngredient> recipeIngredients;
 
     @OneToOne(
-            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
-            fetch = FetchType.LAZY
+            orphanRemoval = true
     )
     @JoinColumn(name = "fk_instruction_id")
     private RecipeInstruction instruction;
