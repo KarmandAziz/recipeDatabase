@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface IngredientDAO extends JpaRepository<Ingredient, String> {
 
     List<Ingredient> findByIngredientNameIgnoreCase(String ingredientName);
-
-    Optional<Ingredient> findByIngredientNameLike(String ingredientName);
+    List<Ingredient> findByIngredientNameLike(String ingredientName);
 }

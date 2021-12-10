@@ -21,7 +21,7 @@ public class Recipe {
     private String recipeName;
 
     @OneToMany(
-            cascade = {CascadeType.REFRESH,CascadeType.DETACH},
+            cascade = {CascadeType.REFRESH,CascadeType.PERSIST},
             fetch = FetchType.LAZY,
             orphanRemoval = true,
             mappedBy = "recipe"
@@ -29,25 +29,23 @@ public class Recipe {
     private List<RecipeIngredient> recipeIngredients;
 
     @OneToOne(
-            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
+            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "fk_instruction_id")
     private RecipeInstruction instruction;
 
     @ManyToMany(
-            cascade = {CascadeType.REFRESH, CascadeType.DETACH},
+            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
             fetch = FetchType.LAZY,
             mappedBy = "recipes"
     )
     private Set<RecipeCategory> categories;
 
-    public Recipe(String id, String recipeName, List<RecipeIngredient> recipeIngredients, RecipeInstruction instruction, Set<RecipeCategory> categories) {
+    public Recipe(String id, String recipeName, RecipeInstruction instruction) {
         this.id = id;
         this.recipeName = recipeName;
-        this.recipeIngredients = recipeIngredients;
         this.instruction = instruction;
-        this.categories = categories;
     }
 
     public Recipe() {

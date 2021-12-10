@@ -1,7 +1,10 @@
 package com.example.recipeDatabase;
 
 import com.example.recipeDatabase.data.IngredientDAO;
+import com.example.recipeDatabase.data.RecipeDAO;
 import com.example.recipeDatabase.model.entity.Ingredient;
+import com.example.recipeDatabase.model.entity.Recipe;
+import com.example.recipeDatabase.model.entity.RecipeInstruction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,23 +16,26 @@ import java.util.Optional;
 public class CommandLine implements CommandLineRunner {
 
     private IngredientDAO ingredientDAO;
+    private RecipeDAO recipeDAO;
 
     @Autowired
-    public CommandLine(IngredientDAO ingredientDAO) {
-        this.ingredientDAO = ingredientDAO;
+    public CommandLine(RecipeDAO recipeDAO) {
+        this.recipeDAO = recipeDAO;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Ingredient ingredient = ingredientDAO.save(new Ingredient(null, "salt"));
-        ingredientDAO.save(new Ingredient(null, "peppar"));
+
+        RecipeInstruction recipeInstruction = new RecipeInstruction(null, "Bake in oven");
+        Recipe recipe = recipeDAO.save(new Recipe(null,"Pizza", recipeInstruction));
 
 
-        List<Ingredient> result = ingredientDAO.findByIngredientNameIgnoreCase("salt");
+        List<Recipe> result = recipeDAO.findByRecipeName("Pizza");
         result.forEach(System.out::println);
 
-        Optional<Ingredient> result2  = ingredientDAO.findByIngredientNameLike("peppar");
-        result2.ifPresent(System.out::println);
+
+
+
 
     }
 }
