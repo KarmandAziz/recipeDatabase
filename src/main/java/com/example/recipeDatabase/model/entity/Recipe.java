@@ -22,15 +22,16 @@ public class Recipe {
     private String recipeName;
 
     @OneToMany(
-            cascade = {CascadeType.REFRESH,CascadeType.PERSIST},
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true,
             mappedBy = "recipe"
     )
-    private List<RecipeIngredient> recipeIngredients;
+    private Set<RecipeIngredient> recipeIngredients;
 
     @OneToOne(
-            orphanRemoval = true
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name = "fk_instruction_id")
     private RecipeInstruction instruction;
@@ -67,11 +68,11 @@ public class Recipe {
         this.recipeName = recipeName;
     }
 
-    public List<RecipeIngredient> getRecipeIngredients() {
+    public Set<RecipeIngredient> getRecipeIngredients() {
         return recipeIngredients;
     }
 
-    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+    public void setRecipeIngredients(Set<RecipeIngredient> recipeIngredients) {
         this.recipeIngredients = recipeIngredients;
     }
 

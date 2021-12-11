@@ -2,9 +2,11 @@ package com.example.recipeDatabase.data;
 
 import com.example.recipeDatabase.model.entity.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface RecipeDAO extends JpaRepository<Recipe, String> {
-    List<Recipe> findByRecipeName(String recipeName);
+
+    List<Recipe> findByRecipeNameContaining(String recipeName);
 }

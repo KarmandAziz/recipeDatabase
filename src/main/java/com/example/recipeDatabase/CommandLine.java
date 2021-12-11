@@ -32,14 +32,11 @@ public class CommandLine implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        RecipeInstruction recipeInstruction = recipeInstructionDAO.save(
-                new RecipeInstruction(null, "Mix flour and water"));
-        Ingredient ingredient = ingredientDAO.save(new Ingredient(null, "flour"));
-        Ingredient ingredient1 = ingredientDAO.save(new Ingredient(null, "water"));
-        Recipe recipe = recipeDAO.save(new Recipe(null, "Pizza", recipeInstruction));
 
-        List<Recipe> result = recipeDAO.findByRecipeName("Pizza");
-        result.forEach(System.out::println);
+       Recipe recipe = recipeDAO.save(new Recipe(null,"Pizza", new RecipeInstruction(null, "Bake in oven")));
+
+      List<Recipe> result = recipeDAO.findByRecipeNameContaining("izza");
+      result.forEach(System.out::println);
 
 
 
