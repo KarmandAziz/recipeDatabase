@@ -49,6 +49,12 @@ public class Recipe {
         this.instruction = instruction;
     }
 
+    public Recipe(String recipeName, Set<RecipeIngredient> recipeIngredients, RecipeInstruction instruction) {
+        this.recipeName = recipeName;
+        this.recipeIngredients = recipeIngredients;
+        this.instruction = instruction;
+    }
+
     public Recipe() {
     }
 

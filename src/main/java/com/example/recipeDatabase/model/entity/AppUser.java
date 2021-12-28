@@ -1,0 +1,92 @@
+package com.example.recipeDatabase.model.entity;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+import java.util.Objects;
+import java.util.Set;
+
+import static com.example.recipeDatabase.model.constants.EntityConstants.GENERATOR;
+import static com.example.recipeDatabase.model.constants.EntityConstants.UUID_GENERATOR;
+@Entity
+public class AppUser {
+
+    @Id
+    @GeneratedValue(generator = GENERATOR)
+    @GenericGenerator(name = GENERATOR, strategy = UUID_GENERATOR)
+    @Column(updatable = false)
+    private String id;
+    @Column(length = 100, unique = true)
+    private String username;
+    private String password;
+    @ManyToMany(
+            cascade = {CascadeType.REFRESH, CascadeType.DETACH},
+            fetch = FetchType.LAZY,
+            mappedBy = "appUsers"
+    )
+    private Set<AppRole> roles;
+
+    public AppUser(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public AppUser() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<AppRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<AppRole> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppUser appUser = (AppUser) o;
+        return Objects.equals(id, appUser.id) && Objects.equals(username, appUser.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username);
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
+}

@@ -1,4 +1,4 @@
-package com.example.recipeDatabase.data;
+package com.example.recipeDatabase.data.dataDAO;
 
 import com.example.recipeDatabase.model.entity.RecipeIngredient;
 import org.springframework.data.jpa.repository.JpaRepository;
