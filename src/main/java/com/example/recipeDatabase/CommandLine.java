@@ -27,7 +27,7 @@ public class CommandLine implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        recipeDAO.searchByRecipeName("Salt").forEach(System.out::println);
+
 
     }
 }
