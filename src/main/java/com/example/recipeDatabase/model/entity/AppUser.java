@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -61,10 +62,19 @@ public class AppUser {
     }
 
     public Set<AppRole> getRoles() {
+        if(roles == null) roles = new HashSet<>();
         return roles;
     }
 
     public void setRoles(Set<AppRole> roles) {
+        if(roles == null) roles = new HashSet<>();
+        if(roles.isEmpty()){
+            if(this.roles != null){
+                this.roles.forEach(appRole -> appRole.getAppUsers().remove(this));
+            }
+        }else {
+            roles.forEach(appRole -> appRole.getAppUsers().add(this));
+        }
         this.roles = roles;
     }
 

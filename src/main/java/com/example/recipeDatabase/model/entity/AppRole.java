@@ -3,6 +3,7 @@ package com.example.recipeDatabase.model.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import static com.example.recipeDatabase.model.constants.EntityConstants.UUID_GE
 
 @Entity
 public class AppRole {
+
     @Id
     @GeneratedValue(generator = GENERATOR)
     @GenericGenerator(name = GENERATOR, strategy = UUID_GENERATOR)
@@ -48,10 +50,19 @@ public class AppRole {
     }
 
     public Set<AppUser> getAppUsers() {
+        if(appUsers == null) appUsers = new HashSet<>();
         return appUsers;
     }
 
     public void setAppUsers(Set<AppUser> appUsers) {
+        if(appUsers == null) appUsers = new HashSet<>();
+        if(appUsers.isEmpty()){
+            if(this.appUsers != null){
+                this.appUsers.forEach(appUser -> appUser.getRoles().remove(this));
+            }
+        } else{
+            appUsers.forEach(appUser -> appUser.getRoles().add(this));
+        }
         this.appUsers = appUsers;
     }
 

@@ -1,9 +1,9 @@
 package com.example.recipeDatabase;
 
-import com.example.recipeDatabase.data.dataDAO.IngredientDAO;
-import com.example.recipeDatabase.data.dataDAO.RecipeDAO;
-import com.example.recipeDatabase.data.dataDAO.RecipeIngredientDAO;
-import com.example.recipeDatabase.data.dataDAO.RecipeInstructionDAO;
+import com.example.recipeDatabase.data.IngredientDAO;
+import com.example.recipeDatabase.data.RecipeDAO;
+import com.example.recipeDatabase.data.RecipeIngredientDAO;
+import com.example.recipeDatabase.data.RecipeInstructionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
