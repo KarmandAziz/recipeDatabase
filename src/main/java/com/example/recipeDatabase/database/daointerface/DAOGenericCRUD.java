@@ -1,4 +1,4 @@
-package com.example.recipeDatabase.database;
+package com.example.recipeDatabase.database.daointerface;
 
 import java.util.List;
 import java.util.Optional;
