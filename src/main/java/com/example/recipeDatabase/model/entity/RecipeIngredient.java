@@ -42,6 +42,13 @@ public class RecipeIngredient {
         this.recipe = recipe;
     }
 
+    public RecipeIngredient(Ingredient ingredient, double amount, Measurement measurement, Recipe recipe) {
+        this.ingredient = ingredient;
+        this.amount = amount;
+        this.measurement = measurement;
+        this.recipe = recipe;
+    }
+
     public RecipeIngredient() {
     }
 
