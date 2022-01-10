@@ -1,5 +1,6 @@
 package com.example.recipeDatabase.model.dto.form;
 
+import com.example.recipeDatabase.validation.OnPut;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
@@ -10,10 +11,13 @@ import static com.example.recipeDatabase.validation.message.ValidationMessages.M
 @Validated
 public class IngredientForm implements Serializable {
 
+    @NotBlank(message = MANDATORY_FIELD, groups = OnPut.class)
     private String id;
     @NotBlank(message = MANDATORY_FIELD)
     private String ingredientName;
 
+    public IngredientForm() {
+    }
 
     public String getId() {
         return id;
