@@ -16,8 +16,8 @@ public class RecipeIngredient {
     @Id
     @GeneratedValue(generator = GENERATOR)
     @GenericGenerator(name = GENERATOR, strategy = UUID_GENERATOR)
+    @Column(updatable = false)
     private String id;
-
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.REFRESH},
             fetch = FetchType.LAZY
