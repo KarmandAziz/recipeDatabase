@@ -3,9 +3,12 @@ package com.example.recipeDatabase.service.impl;
 import com.example.recipeDatabase.model.dto.form.RecipeForm;
 import com.example.recipeDatabase.model.entity.Recipe;
 import com.example.recipeDatabase.service.RecipeEntityService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class RecipeEntityServiceImpl implements RecipeEntityService {
 
     @Override

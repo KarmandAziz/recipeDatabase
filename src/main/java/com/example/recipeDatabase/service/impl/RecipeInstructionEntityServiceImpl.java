@@ -31,7 +31,6 @@ public class RecipeInstructionEntityServiceImpl implements RecipeInstructionEnti
             throw new IllegalArgumentException("RecipeInstructionForm was null");
         }
         RecipeInstruction recipeInstruction = new RecipeInstruction();
-        recipeInstruction.setId(recipeInstructionForm.getId());
         recipeInstruction.setInstructions(recipeInstructionForm.getInstructions());
 
         return recipeInstructionDAO.save(recipeInstruction);

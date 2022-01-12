@@ -4,9 +4,12 @@ import com.example.recipeDatabase.model.dto.form.IngredientForm;
 import com.example.recipeDatabase.model.entity.Ingredient;
 import com.example.recipeDatabase.service.GenericEntityService;
 import com.example.recipeDatabase.service.IngredientEntityService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class IngredientEntityServiceImpl implements IngredientEntityService {
 
 
