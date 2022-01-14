@@ -1,7 +1,8 @@
 package com.example.recipeDatabase.service.impl;
 
-import com.example.recipeDatabase.database.daointerface.RecipeCategoryDAO;
-import com.example.recipeDatabase.database.daointerface.RecipeDAO;
+
+import com.example.recipeDatabase.data.RecipeCategoryDAO;
+import com.example.recipeDatabase.data.RecipeDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
 import com.example.recipeDatabase.model.dto.form.RecipeCategoryForm;
 import com.example.recipeDatabase.model.entity.RecipeCategory;
@@ -19,10 +20,12 @@ public class RecipeCategoryEntityServiceImpl implements RecipeCategoryEntityServ
     private final RecipeCategoryDAO recipeCategoryDAO;
     private final RecipeDAO recipeDAO;
 
+    @Autowired
     public RecipeCategoryEntityServiceImpl(RecipeCategoryDAO recipeCategoryDAO, RecipeDAO recipeDAO) {
         this.recipeCategoryDAO = recipeCategoryDAO;
         this.recipeDAO = recipeDAO;
     }
+
 
     @Override
     public RecipeCategory create(RecipeCategoryForm recipeCategoryForm) {
@@ -60,7 +63,6 @@ public class RecipeCategoryEntityServiceImpl implements RecipeCategoryEntityServ
        recipeCategory.setRecipes(null);
        recipeCategory.setCategory(null);
 
-       recipeCategoryDAO.delete(id);
-
+       recipeCategoryDAO.delete(recipeCategory);
     }
 }
