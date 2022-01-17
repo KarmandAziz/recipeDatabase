@@ -3,7 +3,7 @@ package com.example.recipeDatabase.model.dto.view;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.Serializable;
-@Validated
+
 public class IngredientDTO implements Serializable {
 
     private String id;
