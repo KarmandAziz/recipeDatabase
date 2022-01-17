@@ -1,8 +1,8 @@
-package com.example.recipeDatabase.service.impl;
+package com.example.recipeDatabase.service.implementations;
 
-import com.example.recipeDatabase.model.dto.form.RecipeForm;
+import com.example.recipeDatabase.model.form.RecipeForm;
 import com.example.recipeDatabase.model.entity.Recipe;
-import com.example.recipeDatabase.service.RecipeEntityService;
+import com.example.recipeDatabase.service.interfaces.RecipeEntityService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

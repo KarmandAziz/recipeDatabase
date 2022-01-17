@@ -1,20 +1,16 @@
-package com.example.recipeDatabase.service.impl;
+package com.example.recipeDatabase.service.implementations;
 
 import com.example.recipeDatabase.data.RecipeIngredientDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
-import com.example.recipeDatabase.model.dto.form.RecipeForm;
-import com.example.recipeDatabase.model.dto.form.RecipeIngredientForm;
-import com.example.recipeDatabase.model.entity.Ingredient;
-import com.example.recipeDatabase.model.entity.Recipe;
+import com.example.recipeDatabase.model.form.RecipeIngredientForm;
 import com.example.recipeDatabase.model.entity.RecipeIngredient;
-import com.example.recipeDatabase.service.RecipeEntityService;
-import com.example.recipeDatabase.service.RecipeIngredientEntityService;
+import com.example.recipeDatabase.service.interfaces.RecipeIngredientEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
 @Transactional
 public class RecipeIngredientEntityServiceImpl implements RecipeIngredientEntityService {

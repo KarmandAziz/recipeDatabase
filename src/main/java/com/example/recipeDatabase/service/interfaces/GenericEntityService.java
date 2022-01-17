@@ -1,4 +1,4 @@
-package com.example.recipeDatabase.service;
+package com.example.recipeDatabase.service.interfaces;
 
 import java.util.List;
 
