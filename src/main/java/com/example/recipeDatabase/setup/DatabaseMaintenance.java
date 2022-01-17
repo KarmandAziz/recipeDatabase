@@ -1,5 +1,5 @@
 package com.example.recipeDatabase.setup;
-
+/*
 import com.example.recipeDatabase.data.AppRoleDAO;
 import com.example.recipeDatabase.model.entity.AppRole;
 import com.example.recipeDatabase.model.entity.UserRole;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 @Component
-public class DatabaseMaintenance {
+ public class DatabaseMaintenance {
 
     private final AppRoleDAO appRoleDAO;
     @Value("${spring.profiles.active}")
@@ -35,3 +35,4 @@ public class DatabaseMaintenance {
     }
 }
 
+*/
