@@ -1,4 +1,4 @@
-package com.example.recipeDatabase.model.form;
+package com.example.recipeDatabase.model.dto.form;
 
 import com.example.recipeDatabase.validation.OnPost;
 import org.springframework.validation.annotation.Validated;

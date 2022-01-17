@@ -1,4 +1,4 @@
-package com.example.recipeDatabase.model.form;
+package com.example.recipeDatabase.model.dto.form;
 
 import com.example.recipeDatabase.model.constants.Measurement;
 import com.example.recipeDatabase.validation.OnPost;

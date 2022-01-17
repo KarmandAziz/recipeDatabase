@@ -2,7 +2,7 @@ package com.example.recipeDatabase.service.implementations;
 
 import com.example.recipeDatabase.data.RecipeIngredientDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
-import com.example.recipeDatabase.model.form.RecipeIngredientForm;
+import com.example.recipeDatabase.model.dto.form.RecipeIngredientForm;
 import com.example.recipeDatabase.model.entity.RecipeIngredient;
 import com.example.recipeDatabase.service.interfaces.RecipeIngredientEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
