@@ -4,13 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8a7e4cb-39d5-4d8a-99d6-fa67a29973ac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/setup/DatabaseMaintenance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/setup/DatabaseMaintenance.java" afterDir="false" />
+    <list default="true" id="e8a7e4cb-39d5-4d8a-99d6-fa67a29973ac" name="Changes" comment="Test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/service/implementations/AppUserEntityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/service/interfaces/AppUserEntityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -95,8 +106,15 @@
       <option name="presentableId" value="Default" />
       <updated>1642429860967</updated>
       <workItem from="1642429862019" duration="418000" />
-      <workItem from="1642430315163" duration="436000" />
+      <workItem from="1642430315163" duration="1405000" />
     </task>
+    <task id="LOCAL−00001" summary="Test">
+      <created>1642430766944</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1642430766944</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,5 +130,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test" />
   </component>
 </project>
