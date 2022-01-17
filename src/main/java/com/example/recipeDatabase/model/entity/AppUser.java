@@ -61,6 +61,20 @@ public class AppUser {
         this.password = password;
     }
 
+    public void addAppRole(AppRole appRole){
+        if(appRole == null) throw new IllegalArgumentException("AppRole was null");
+        if(roles == null) roles = new HashSet<>();
+        roles.add(appRole);
+        appRole.getAppUsers().add(this);
+    }
+
+    public void removeAppRole(AppRole appRole){
+        if(appRole == null) throw new IllegalArgumentException("AppRole was null");
+        if(roles == null) roles = new HashSet<>();
+        roles.remove(appRole);
+        appRole.getAppUsers().remove(this);
+    }
+
     public Set<AppRole> getRoles() {
         if(roles == null) roles = new HashSet<>();
         return roles;

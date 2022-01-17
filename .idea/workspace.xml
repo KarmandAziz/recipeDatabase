@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8a7e4cb-39d5-4d8a-99d6-fa67a29973ac" name="Changes" comment="Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/service/implementations/AppUserEntityServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/service/interfaces/AppUserEntityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e8a7e4cb-39d5-4d8a-99d6-fa67a29973ac" name="Changes" comment="Dependency / AppUserEntityService added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/security/BCryptPasswordEncoderConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipeDatabase.iml" beforeDir="false" afterPath="$PROJECT_DIR$/recipeDatabase.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/model/entity/AppRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/model/entity/AppRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/model/entity/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/model/entity/AppUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/service/implementations/AppUserEntityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/recipeDatabase/service/implementations/AppUserEntityServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +31,14 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
@@ -106,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1642429860967</updated>
       <workItem from="1642429862019" duration="418000" />
-      <workItem from="1642430315163" duration="1405000" />
+      <workItem from="1642430315163" duration="1959000" />
     </task>
     <task id="LOCAL−00001" summary="Test">
       <created>1642430766944</created>
@@ -114,7 +118,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1642430766944</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="Dependency / AppUserEntityService added">
+      <created>1642435177622</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1642435177622</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +143,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test" />
+    <MESSAGE value="Dependency / AppUserEntityService added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dependency / AppUserEntityService added" />
   </component>
 </project>

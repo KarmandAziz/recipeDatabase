@@ -74,6 +74,8 @@ public class AppRole {
         this.appUsers = appUsers;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
