@@ -1,12 +1,12 @@
 package com.example.recipeDatabase.model.entity;
 
+import com.example.recipeDatabase.model.dto.form.RecipeIngredientForm;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static com.example.recipeDatabase.model.constants.EntityConstants.GENERATOR;
@@ -22,6 +22,13 @@ public class Ingredient {
     private String id;
     @Column(unique = true)
     private String ingredientName;
+    @OneToMany(
+            cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST},
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            mappedBy = "ingredient"
+    )
+    private List<RecipeIngredient> recipeIngredients;
 
     public Ingredient(String id, String ingredientName) {
         this.id = id;
@@ -29,6 +36,24 @@ public class Ingredient {
     }
 
     public Ingredient() {
+    }
+
+    public void addNewRecipeIngredient(RecipeIngredient recipeIngredient){
+        if(recipeIngredient == null) throw new IllegalArgumentException("recipeIngredient was null.");
+        if(recipeIngredients == null) recipeIngredients = new ArrayList<>();
+        if(!recipeIngredients.contains(recipeIngredient)){
+            recipeIngredients.add(recipeIngredient);
+            recipeIngredient.setIngredient(this);
+        }
+    }
+    public void removeRecipeIngredient(RecipeIngredient recipeIngredient){
+        if(recipeIngredient == null) throw new IllegalArgumentException("recipeIngredient was null.");
+        if(recipeIngredients == null) recipeIngredients = new ArrayList<>();
+        if(this.recipeIngredients.contains(recipeIngredient)){
+            recipeIngredients.remove(recipeIngredient);
+            recipeIngredient.setIngredient(null);
+        }
+
     }
 
     public String getId() {

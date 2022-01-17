@@ -4,8 +4,11 @@ import com.example.recipeDatabase.data.IngredientDAO;
 import com.example.recipeDatabase.data.RecipeIngredientDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
 import com.example.recipeDatabase.model.dto.form.IngredientForm;
+import com.example.recipeDatabase.model.dto.form.RecipeIngredientForm;
 import com.example.recipeDatabase.model.entity.Ingredient;
+import com.example.recipeDatabase.model.entity.RecipeIngredient;
 import com.example.recipeDatabase.service.interfaces.IngredientEntityService;
+import com.example.recipeDatabase.service.interfaces.RecipeIngredientEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,14 +20,13 @@ import java.util.List;
 public class IngredientEntityServiceImpl implements IngredientEntityService {
 
     private final IngredientDAO ingredientDAO;
-    private final RecipeIngredientDAO recipeIngredientDAO;
+    private final RecipeIngredientEntityService recipeIngredientEntityService;
 
     @Autowired
-    public IngredientEntityServiceImpl(IngredientDAO ingredientDAO, RecipeIngredientDAO recipeIngredientDAO) {
+    public IngredientEntityServiceImpl(IngredientDAO ingredientDAO, RecipeIngredientEntityService recipeIngredientEntityService) {
         this.ingredientDAO = ingredientDAO;
-        this.recipeIngredientDAO = recipeIngredientDAO;
+        this.recipeIngredientEntityService = recipeIngredientEntityService;
     }
-
 
     @Override
     public Ingredient create(IngredientForm ingredientForm) {
@@ -63,5 +65,39 @@ public class IngredientEntityServiceImpl implements IngredientEntityService {
         Ingredient ingredient = findById(id);
         ingredientDAO.delete(ingredient);
 
+    }
+
+    @Override
+    public Ingredient addNewRecipeIngredient(String ingredientId, RecipeIngredientForm recipeIngredientForm) {
+        Ingredient ingredient = findById(ingredientId);
+        ingredient.addNewRecipeIngredient(
+                recipeIngredientEntityService.create(recipeIngredientForm)
+        );
+        ingredient = ingredientDAO.save(ingredient);
+        return ingredient;
+    }
+
+    @Override
+    public Ingredient removeRecipeIngredient(String ingredientId, String recipeIngredientId) {
+        Ingredient ingredient = findById(ingredientId);
+        RecipeIngredient recipeIngredient = recipeIngredientEntityService.findById(recipeIngredientId);
+
+        ingredient.removeRecipeIngredient(recipeIngredient);
+        ingredient = ingredientDAO.save(ingredient);
+        return ingredient;
+    }
+
+    @Override
+    public Ingredient moveRecipeIngredient(String ingredientId, String recipeIngredientId) {
+        Ingredient newIngredient = findById(ingredientId);
+        RecipeIngredient recipeIngredient = recipeIngredientEntityService.findById(recipeIngredientId);
+        Ingredient oldIngredient = recipeIngredient.getIngredient();
+        if(oldIngredient != null){
+            oldIngredient.removeRecipeIngredient(recipeIngredient);
+        }
+        newIngredient.addNewRecipeIngredient(recipeIngredient);
+
+        newIngredient = ingredientDAO.save(newIngredient);
+        return newIngredient;
     }
 }
