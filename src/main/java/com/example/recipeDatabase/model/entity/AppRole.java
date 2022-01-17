@@ -29,7 +29,16 @@ public class AppRole {
     )
     private Set<AppUser> appUsers;
 
+    public AppRole(String id, UserRole userRole, Set<AppUser> appUsers) {
+        this.id = id;
+        this.userRole = userRole;
+        this.appUsers = appUsers;
+    }
+
     public AppRole() {
+    }
+
+    public AppRole(UserRole role) {
     }
 
     public String getId() {

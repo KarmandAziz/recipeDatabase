@@ -1,10 +1,8 @@
 package com.example.recipeDatabase.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
