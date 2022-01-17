@@ -3,6 +3,9 @@ package com.example.recipeDatabase.model.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -56,6 +59,23 @@ public class Recipe {
     public Recipe() {
     }
 
+    public void addRecipeCategory(RecipeCategory recipeCategory){
+        if(recipeCategory == null) throw new IllegalArgumentException("recipeCategory was null!");
+        if(categories == null) categories = new HashSet<>();
+        if(!categories.contains(recipeCategory)){
+            categories.add(recipeCategory);
+        }
+    }
+
+    public void removeRecipeCategory(RecipeCategory recipeCategory){
+        if(recipeCategory == null) throw new IllegalArgumentException("recipeCategory was null!");
+        if(categories == null) categories = new HashSet<>();
+        if(this.categories.contains(recipeCategory)){
+            categories.remove(recipeCategory);
+            recipeCategory.setCategory(null);
+        }
+    }
+
     public String getId() {
         return id;
     }
@@ -77,6 +97,7 @@ public class Recipe {
     }
 
     public void setRecipeIngredients(Set<RecipeIngredient> recipeIngredients) {
+        if(recipeIngredients == null) recipeIngredients = new HashSet<>();
         this.recipeIngredients = recipeIngredients;
     }
 
@@ -92,8 +113,16 @@ public class Recipe {
         return categories;
     }
 
-    public void setCategories(Set<RecipeCategory> categories) {
-        this.categories = categories;
+    public void setCategories(Set<RecipeCategory> recipeCategories) {
+        if(recipeCategories == null) recipeCategories = new HashSet<>();
+        if(recipeCategories.isEmpty()){
+            if(this.categories != null){
+                this.categories.forEach(recipeCategory -> recipeCategory.setRecipes(null));
+            }
+        }else{
+            recipeCategories.forEach(recipeCategory -> recipeCategory.setRecipes(recipeCategory.getRecipes()));
+        }
+        this.categories = recipeCategories;
     }
 
     @Override

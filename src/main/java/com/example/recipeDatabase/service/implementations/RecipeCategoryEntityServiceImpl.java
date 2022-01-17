@@ -2,7 +2,6 @@ package com.example.recipeDatabase.service.implementations;
 
 
 import com.example.recipeDatabase.data.RecipeCategoryDAO;
-import com.example.recipeDatabase.data.RecipeDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
 import com.example.recipeDatabase.model.dto.form.RecipeCategoryForm;
 import com.example.recipeDatabase.model.entity.RecipeCategory;
@@ -17,20 +16,18 @@ import java.util.List;
 public class RecipeCategoryEntityServiceImpl implements RecipeCategoryEntityService {
 
     private final RecipeCategoryDAO recipeCategoryDAO;
-    private final RecipeDAO recipeDAO;
 
     @Autowired
-    public RecipeCategoryEntityServiceImpl(RecipeCategoryDAO recipeCategoryDAO, RecipeDAO recipeDAO) {
+    public RecipeCategoryEntityServiceImpl(RecipeCategoryDAO recipeCategoryDAO) {
         this.recipeCategoryDAO = recipeCategoryDAO;
-        this.recipeDAO = recipeDAO;
     }
-
 
     @Override
     public RecipeCategory create(RecipeCategoryForm recipeCategoryForm) {
         if(recipeCategoryForm == null) throw new IllegalArgumentException("RecipeCategoryForm was null");
         RecipeCategory recipeCategory = new RecipeCategory();
         recipeCategory.setCategory(recipeCategoryForm.getCategory());
+
 
         return recipeCategoryDAO.save(recipeCategory);
     }
