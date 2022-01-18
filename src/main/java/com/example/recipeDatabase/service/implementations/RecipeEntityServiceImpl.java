@@ -5,6 +5,8 @@ import com.example.recipeDatabase.exception.AppResourceNotFoundException;
 import com.example.recipeDatabase.model.dto.form.RecipeForm;
 import com.example.recipeDatabase.model.dto.form.RecipeInstructionForm;
 import com.example.recipeDatabase.model.entity.Recipe;
+import com.example.recipeDatabase.model.entity.RecipeCategory;
+import com.example.recipeDatabase.service.interfaces.RecipeCategoryEntityService;
 import com.example.recipeDatabase.service.interfaces.RecipeEntityService;
 import com.example.recipeDatabase.service.interfaces.RecipeInstructionEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,14 @@ public class RecipeEntityServiceImpl implements RecipeEntityService {
 
     private final RecipeDAO recipeDAO;
     private final RecipeInstructionEntityService recipeInstructionEntityService;
+    private final RecipeCategoryEntityService recipeCategoryEntityService;
 
     @Autowired
-    public RecipeEntityServiceImpl(RecipeDAO recipeDAO, RecipeInstructionEntityService recipeInstructionEntityService) {
+    public RecipeEntityServiceImpl(RecipeDAO recipeDAO, RecipeInstructionEntityService recipeInstructionEntityService, RecipeCategoryEntityService recipeCategoryEntityService) {
         this.recipeDAO = recipeDAO;
         this.recipeInstructionEntityService = recipeInstructionEntityService;
+        this.recipeCategoryEntityService = recipeCategoryEntityService;
     }
-
 
     @Override
     public Recipe create(RecipeForm recipeForm) {
@@ -35,6 +38,7 @@ public class RecipeEntityServiceImpl implements RecipeEntityService {
         recipe.setRecipeName(recipeForm.getRecipeName());
         recipe.setInstruction(recipeInstructionEntityService.create(
                 recipeForm.getRecipeInstruction()));
+
         return recipeDAO.save(recipe);
     }
 

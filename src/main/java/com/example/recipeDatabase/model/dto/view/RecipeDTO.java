@@ -1,10 +1,12 @@
 package com.example.recipeDatabase.model.dto.view;
 
+import com.example.recipeDatabase.model.entity.RecipeCategory;
 import com.example.recipeDatabase.model.entity.RecipeIngredient;
 import com.example.recipeDatabase.model.entity.RecipeInstruction;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class RecipeDTO implements Serializable {
@@ -12,18 +14,36 @@ public class RecipeDTO implements Serializable {
     private String id;
     private String recipeName;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Set<RecipeIngredient> recipeIngredients;
+    private List<RecipeIngredientDTO> recipeIngredients;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private RecipeInstruction instruction;
+    private RecipeInstructionDTO instructions;
+    private List<RecipeCategoryDTO> categories;
 
-    public RecipeDTO(String id, String recipeName, Set<RecipeIngredient> recipeIngredients, RecipeInstruction instruction) {
+    public RecipeDTO(String id, String recipeName, List<RecipeIngredientDTO> recipeIngredients, RecipeInstructionDTO instructions, List<RecipeCategoryDTO> categories) {
         this.id = id;
         this.recipeName = recipeName;
         this.recipeIngredients = recipeIngredients;
-        this.instruction = instruction;
+        this.instructions = instructions;
+        this.categories = categories;
     }
 
     public RecipeDTO() {
+    }
+
+    public List<RecipeCategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<RecipeCategoryDTO> categories) {
+        this.categories = categories;
+    }
+
+    public RecipeInstructionDTO getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(RecipeInstructionDTO instructions) {
+        this.instructions = instructions;
     }
 
     public String getId() {
@@ -42,19 +62,20 @@ public class RecipeDTO implements Serializable {
         this.recipeName = recipeName;
     }
 
-    public Set<RecipeIngredient> getRecipeIngredients() {
+    public List<RecipeIngredientDTO> getRecipeIngredients() {
         return recipeIngredients;
     }
 
-    public void setRecipeIngredients(Set<RecipeIngredient> recipeIngredients) {
+    public void setRecipeIngredients(List<RecipeIngredientDTO> recipeIngredients) {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public RecipeInstruction getInstruction() {
-        return instruction;
+    public RecipeInstructionDTO getInstructionDTO() {
+        return instructions;
     }
 
-    public void setInstruction(RecipeInstruction instruction) {
-        this.instruction = instruction;
+    public void setInstructionDTO(RecipeInstructionDTO instructionDTO) {
+        this.instructions = instructionDTO;
     }
 }
+

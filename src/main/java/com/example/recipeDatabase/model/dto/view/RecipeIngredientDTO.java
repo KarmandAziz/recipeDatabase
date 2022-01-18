@@ -13,19 +13,20 @@ public class RecipeIngredientDTO implements Serializable {
     private double amount;
     private Measurement measurement;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Recipe recipe;
+    private RecipeDTO recipe;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Ingredient ingredient;
+    private IngredientDTO ingredient;
 
-    public RecipeIngredientDTO(String id, double amount, Measurement measurement, Recipe recipe, Ingredient ingredient) {
+
+    public RecipeIngredientDTO() {
+    }
+
+    public RecipeIngredientDTO(String id, double amount, Measurement measurement, RecipeDTO recipe, IngredientDTO ingredient) {
         this.id = id;
         this.amount = amount;
         this.measurement = measurement;
         this.recipe = recipe;
         this.ingredient = ingredient;
-    }
-
-    public RecipeIngredientDTO() {
     }
 
     public String getId() {
@@ -52,19 +53,21 @@ public class RecipeIngredientDTO implements Serializable {
         this.measurement = measurement;
     }
 
-    public Recipe getRecipe() {
+    public RecipeDTO getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(Recipe recipe) {
+    public void setRecipe(RecipeDTO recipe) {
         this.recipe = recipe;
     }
 
-    public Ingredient getIngredient() {
+    public IngredientDTO getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(Ingredient ingredient) {
+    public void setIngredient(IngredientDTO ingredient) {
         this.ingredient = ingredient;
     }
 }
+
+
