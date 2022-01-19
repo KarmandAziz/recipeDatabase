@@ -1,5 +1,5 @@
-package com.example.recipeDatabase.setup;
-/*
+/* package com.example.recipeDatabase.setup;
+
 import com.example.recipeDatabase.data.AppRoleDAO;
 import com.example.recipeDatabase.model.entity.AppRole;
 import com.example.recipeDatabase.model.entity.UserRole;

@@ -29,14 +29,20 @@ public class IngredientServiceImpl implements IngredientService {
 
 
     @Override
-    public IngredientDTO addNewRecipeIngredient(String ingredientId, RecipeIngredientForm recipeIngredientForm) {
-        Ingredient ingredient = ingredientEntityService.addNewRecipeIngredient(ingredientId, recipeIngredientForm);
+    public IngredientDTO addNewRecipeIngredient(String ingredientId, String recipeIngredientId) {
+        Ingredient ingredient = ingredientEntityService.addNewRecipeIngredient(ingredientId, recipeIngredientId);
         return dtoConverter.toIngredientDTO(ingredient);
     }
 
     @Override
     public IngredientDTO removeRecipeIngredient(String ingredientId, String recipeIngredientId) {
         Ingredient ingredient = ingredientEntityService.removeRecipeIngredient(ingredientId, recipeIngredientId);
+        return dtoConverter.toIngredientDTO(ingredient);
+    }
+
+    @Override
+    public IngredientDTO moveRecipeIngredient(String ingredientId, String recipeIngredientId) {
+        Ingredient ingredient = ingredientEntityService.moveRecipeIngredient(ingredientId, recipeIngredientId);
         return dtoConverter.toIngredientDTO(ingredient);
     }
 

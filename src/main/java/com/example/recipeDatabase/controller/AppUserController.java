@@ -29,9 +29,9 @@ public class AppUserController {
         return ResponseEntity.status(201).body(appUserService.create(appUserForm, UserRole.ROLE_SUPER_ADMIN));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN", "ROLE_PREMISES_ADMIN"})
+    @Secured({"ROLE_SUPER_ADMIN", "ROLE_CASUAL_ADMIN"})
     @PostMapping("/api/v1/users")
-    public ResponseEntity<AppUserDTO> createPremisesAdmin(@Validated(OnPost.class) @RequestBody AppUserForm appUserForm) {
+    public ResponseEntity<AppUserDTO> createCasualAdmin(@Validated(OnPost.class) @RequestBody AppUserForm appUserForm) {
         return ResponseEntity.status(201).body(appUserService.create(appUserForm, UserRole.ROLE_USER_ADMIN));
     }
 

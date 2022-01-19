@@ -68,11 +68,10 @@ public class IngredientEntityServiceImpl implements IngredientEntityService {
     }
 
     @Override
-    public Ingredient addNewRecipeIngredient(String ingredientId, RecipeIngredientForm recipeIngredientForm) {
+    public Ingredient addNewRecipeIngredient(String ingredientId, String recipeIngredientId) {
         Ingredient ingredient = findById(ingredientId);
-        ingredient.addNewRecipeIngredient(
-                recipeIngredientEntityService.create(recipeIngredientForm)
-        );
+        RecipeIngredient recipeIngredient = recipeIngredientEntityService.findById(recipeIngredientId);
+        ingredient.addNewRecipeIngredient(recipeIngredient);
         ingredient = ingredientDAO.save(ingredient);
         return ingredient;
     }
