@@ -4,6 +4,7 @@ package com.example.recipeDatabase.service.implementations;
 import com.example.recipeDatabase.data.RecipeCategoryDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
 import com.example.recipeDatabase.model.dto.form.RecipeCategoryForm;
+import com.example.recipeDatabase.model.entity.Recipe;
 import com.example.recipeDatabase.model.entity.RecipeCategory;
 import com.example.recipeDatabase.service.interfaces.RecipeCategoryEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +62,5 @@ public class RecipeCategoryEntityServiceImpl implements RecipeCategoryEntityServ
 
        recipeCategoryDAO.delete(recipeCategory);
     }
+
 }

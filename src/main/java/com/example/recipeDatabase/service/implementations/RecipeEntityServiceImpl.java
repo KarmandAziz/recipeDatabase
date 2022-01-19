@@ -1,6 +1,8 @@
 package com.example.recipeDatabase.service.implementations;
 
+import com.example.recipeDatabase.data.RecipeCategoryDAO;
 import com.example.recipeDatabase.data.RecipeDAO;
+import com.example.recipeDatabase.data.RecipeIngredientDAO;
 import com.example.recipeDatabase.exception.AppResourceNotFoundException;
 import com.example.recipeDatabase.model.dto.form.RecipeForm;
 import com.example.recipeDatabase.model.dto.form.RecipeInstructionForm;
@@ -14,19 +16,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+
 @Service
 @Transactional
 public class RecipeEntityServiceImpl implements RecipeEntityService {
 
     private final RecipeDAO recipeDAO;
     private final RecipeInstructionEntityService recipeInstructionEntityService;
-    private final RecipeCategoryEntityService recipeCategoryEntityService;
+    private final RecipeCategoryDAO recipecategoryDAO;
 
-    @Autowired
-    public RecipeEntityServiceImpl(RecipeDAO recipeDAO, RecipeInstructionEntityService recipeInstructionEntityService, RecipeCategoryEntityService recipeCategoryEntityService) {
+
+    public RecipeEntityServiceImpl(RecipeDAO recipeDAO, RecipeInstructionEntityService recipeInstructionEntityService, RecipeCategoryDAO recipecategoryDAO) {
         this.recipeDAO = recipeDAO;
         this.recipeInstructionEntityService = recipeInstructionEntityService;
-        this.recipeCategoryEntityService = recipeCategoryEntityService;
+        this.recipecategoryDAO = recipecategoryDAO;
     }
 
     @Override
@@ -73,5 +77,45 @@ public class RecipeEntityServiceImpl implements RecipeEntityService {
     }
 
 
+    @Override
+    public Recipe addRecipeCategory(String id, String categoryId) {
+        Recipe recipe = findById(id);
+        RecipeCategory recipeCategory = recipecategoryDAO.findById(categoryId)
+                .orElseThrow(() -> new AppResourceNotFoundException("Could not find Category with id " + categoryId));
+        recipe.addRecipeCategory(recipeCategory);
 
+        recipe = recipeDAO.save(recipe);
+        return recipe;
+    }
+
+    @Override
+    public Recipe removeRecipeCategory(String id, String categoryId) {
+        Recipe recipe = findById(id);
+        RecipeCategory recipeCategory = recipecategoryDAO.findById(categoryId)
+                .orElseThrow(() -> new AppResourceNotFoundException("Could not find Category with id " + categoryId));
+        recipe.removeRecipeCategory(recipeCategory);
+
+        recipe = recipeDAO.save(recipe);
+        return recipe;
+    }
+
+    @Override
+    public List<Recipe> findByRecipeNameContaining(String recipeName) {
+        return recipeDAO.findByRecipeNameContaining(recipeName);
+    }
+
+    @Override
+    public List<Recipe> searchByRecipeName(String name) {
+        return recipeDAO.searchByRecipeName(name);
+    }
+
+    @Override
+    public List<Recipe> searchByCategory(String category) {
+        return recipeDAO.searchByCategory(category);
+    }
+
+    @Override
+    public Set<Recipe> searchByAnyCategories(String... categories) {
+        return recipeDAO.searchByAnyCategories(categories);
+    }
 }

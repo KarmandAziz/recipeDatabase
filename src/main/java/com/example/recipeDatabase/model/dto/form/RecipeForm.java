@@ -23,8 +23,7 @@ public class RecipeForm implements Serializable {
     @NotBlank(message = MANDATORY_FIELD,groups = {OnPost.class, OnPut.class})
     private String recipeName;
     @NotNull(message = MANDATORY_FIELD,groups = {OnPost.class,OnPut.class})
-    @Valid private RecipeInstructionForm recipeInstructionForm;
-    @Valid private Set<RecipeCategoryForm> recipeCategoryForm;
+    @Valid private RecipeInstructionForm recipeInstruction;
 
 
     public RecipeForm() {
@@ -47,18 +46,10 @@ public class RecipeForm implements Serializable {
     }
 
     public RecipeInstructionForm getRecipeInstruction() {
-        return recipeInstructionForm;
+        return recipeInstruction;
     }
 
     public void setRecipeInstruction(RecipeInstructionForm recipeInstruction) {
-        this.recipeInstructionForm = recipeInstruction;
-    }
-
-    public Set<RecipeCategoryForm> getRecipeCategoryForm() {
-        return recipeCategoryForm;
-    }
-
-    public void setRecipeCategoryForm(Set<RecipeCategoryForm> recipeCategoryForm) {
-        this.recipeCategoryForm = recipeCategoryForm;
+        this.recipeInstruction = recipeInstruction;
     }
 }
