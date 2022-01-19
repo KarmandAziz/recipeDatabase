@@ -16,5 +16,5 @@ public interface RecipeEntityService extends GenericEntityService<Recipe, Recipe
     List<Recipe> findByRecipeNameContaining(String recipeName);
     List<Recipe> searchByRecipeName(String name);
     List<Recipe> searchByCategory(String category);
-    Set<Recipe> searchByAnyCategories(String... categories);
+    List<Recipe> searchByAnyCategories(String... categories);
 }

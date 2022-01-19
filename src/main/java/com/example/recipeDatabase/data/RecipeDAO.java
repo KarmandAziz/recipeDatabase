@@ -20,5 +20,5 @@ public interface RecipeDAO extends JpaRepository<Recipe, String> {
     List<Recipe> searchByCategory(@Param("category") String category);
 
     @Query("SELECT r.recipes FROM RecipeCategory r WHERE r.category IN :categories")
-    Set<Recipe> searchByAnyCategories(@Param("categories") String... categories);
+    List<Recipe> searchByAnyCategories(@Param("categories") String... categories);
 }

@@ -115,7 +115,7 @@ public class RecipeEntityServiceImpl implements RecipeEntityService {
     }
 
     @Override
-    public Set<Recipe> searchByAnyCategories(String... categories) {
+    public List<Recipe> searchByAnyCategories(String... categories) {
         return recipeDAO.searchByAnyCategories(categories);
     }
 }
