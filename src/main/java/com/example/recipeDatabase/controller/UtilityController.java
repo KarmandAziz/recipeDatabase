@@ -19,8 +19,7 @@ public class UtilityController {
     public ResponseEntity<?> getValidRequestParams(){
         Map<String, List<String>> map = new HashMap<>();
         map.put("users:search", new ArrayList<>(Arrays.asList("role", "username", "all")));
-        map.put("recipeIngredient:search", new ArrayList<>(Arrays.asList("between", "after", "administrator", "vaccine", "vacant", "city", "all")));
-        map.put("recipe:search", new ArrayList<>(Arrays.asList("name", "pnr", "all")));
+        map.put("recipe:search", new ArrayList<>(Arrays.asList("all", "recipeName", "recipeNameContaining", "category", "categories")));
         return ResponseEntity.ok(map);
     }
 }
