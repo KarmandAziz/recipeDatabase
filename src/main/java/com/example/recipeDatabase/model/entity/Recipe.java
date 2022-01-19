@@ -38,7 +38,7 @@ public class Recipe {
     private RecipeInstruction instruction;
 
     @ManyToMany(
-            cascade = {CascadeType.REFRESH, CascadeType.PERSIST},
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "recipes"
     )

@@ -20,7 +20,7 @@ public class RecipeCategory {
     private String id;
     private String category;
     @ManyToMany(
-            cascade = {CascadeType.REFRESH, CascadeType.DETACH},
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     @JoinTable(
