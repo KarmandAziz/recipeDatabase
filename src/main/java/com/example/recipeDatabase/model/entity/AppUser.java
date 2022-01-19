@@ -28,8 +28,7 @@ public class AppUser {
     )
     private Set<AppRole> roles;
 
-    public AppUser(Set<AppRole> roles, String id, String username, String password) {
-        this.id = id;
+    public AppUser(Set<AppRole> roles,  String username, String password) {
         this.username = username;
         this.password = password;
         this.roles = roles;

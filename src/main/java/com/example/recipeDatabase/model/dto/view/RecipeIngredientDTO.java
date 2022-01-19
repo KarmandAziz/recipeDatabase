@@ -3,6 +3,7 @@ package com.example.recipeDatabase.model.dto.view;
 import com.example.recipeDatabase.model.constants.Measurement;
 import com.example.recipeDatabase.model.entity.Ingredient;
 import com.example.recipeDatabase.model.entity.Recipe;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;

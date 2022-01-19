@@ -20,7 +20,7 @@ public class JSONHandler {
 
     private final ObjectMapper objectMapper;
 
-    private JSONHandler() {
+    public JSONHandler() {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.registerModule(new JavaTimeModule());

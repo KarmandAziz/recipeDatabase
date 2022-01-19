@@ -3,6 +3,7 @@ package com.example.recipeDatabase.model.dto.view;
 import com.example.recipeDatabase.model.entity.RecipeCategory;
 import com.example.recipeDatabase.model.entity.RecipeIngredient;
 import com.example.recipeDatabase.model.entity.RecipeInstruction;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class RecipeDTO implements Serializable {
     private List<RecipeIngredientDTO> recipeIngredients;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private RecipeInstructionDTO instructions;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<RecipeCategoryDTO> categories;
 
     public RecipeDTO(String id, String recipeName, List<RecipeIngredientDTO> recipeIngredients, RecipeInstructionDTO instructions, List<RecipeCategoryDTO> categories) {

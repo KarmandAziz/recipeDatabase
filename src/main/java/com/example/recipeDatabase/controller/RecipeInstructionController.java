@@ -29,19 +29,18 @@ public class RecipeInstructionController {
         return ResponseEntity.status(201).body(instructions);
     }
 
-    @Secured({"ROLE_SUPER_ADMIN","ROLE_CASUAL_ADMIN"})
     @GetMapping("/api/v1/instructions")
     public ResponseEntity<List<RecipeInstructionDTO>> find() {
         return ResponseEntity.ok(
                 recipeInstructionService.findAll()
         );
     }
-    @Secured({"ROLE_SUPER_ADMIN","ROLE_CASUAL_ADMIN"})
+
     @GetMapping("/api/v1/instructions/{id}")
     public ResponseEntity<RecipeInstructionDTO> findById(@PathVariable("id") String id) {
         return ResponseEntity.ok(recipeInstructionService.findById(id));
     }
-    @Secured({"ROLE_SUPER_ADMIN","ROLE_CASUAL_ADMIN"})
+
     @PutMapping("/api/v1/instructions/{id}")
     public ResponseEntity<RecipeInstructionDTO> update(@PathVariable("id") String id, @Validated(OnPut.class) @RequestBody RecipeInstructionForm form) {
         return ResponseEntity.ok(recipeInstructionService.update(id, form));
