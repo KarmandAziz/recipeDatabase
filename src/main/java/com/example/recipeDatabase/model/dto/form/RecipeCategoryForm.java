@@ -1,5 +1,6 @@
 package com.example.recipeDatabase.model.dto.form;
 
+import com.example.recipeDatabase.validation.OnPost;
 import com.example.recipeDatabase.validation.OnPut;
 import org.springframework.validation.annotation.Validated;
 
@@ -10,9 +11,9 @@ import static com.example.recipeDatabase.validation.message.ValidationMessages.M
 
 @Validated
 public class RecipeCategoryForm implements Serializable{
-
+    @NotBlank(message = MANDATORY_FIELD, groups = OnPut.class)
     private String id;
-    @NotBlank(message = MANDATORY_FIELD)
+    @NotBlank(message = MANDATORY_FIELD, groups = {OnPut.class, OnPost.class})
     private String category;
 
     public RecipeCategoryForm() {
