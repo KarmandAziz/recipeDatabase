@@ -7,7 +7,6 @@ import com.example.recipeDatabase.model.entity.Ingredient;
 import com.example.recipeDatabase.service.interfaces.GenericEntityService;
 
 public interface IngredientService extends GenericEntityService<IngredientDTO, IngredientForm> {
-    Ingredient addNewRecipeIngredient(String ingredientId, RecipeIngredientForm recipeIngredientForm);
-    Ingredient removeRecipeIngredient(String ingredientId, String recipeIngredientId);
-    Ingredient moveRecipeIngredient(String ingredientId, String recipeIngredientId);
+    IngredientDTO addNewRecipeIngredient(String ingredientId, RecipeIngredientForm recipeIngredientForm);
+    IngredientDTO removeRecipeIngredient(String ingredientId, String recipeIngredientId);
 }
