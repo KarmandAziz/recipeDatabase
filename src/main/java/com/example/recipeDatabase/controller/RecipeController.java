@@ -26,7 +26,7 @@ public class RecipeController {
 
     @Secured({"ROLE_SUPER_ADMIN", "ROLE_CASUAL_ADMIN"})
     @PostMapping("/api/v1/recipes")
-    public ResponseEntity<RecipeDTO> createBooking(@Validated(OnPost.class) @RequestBody RecipeForm form){
+    public ResponseEntity<RecipeDTO> createRecipe(@Validated(OnPost.class) @RequestBody RecipeForm form){
         return ResponseEntity.status(201).body(
                 recipeService.create(form)
         );
