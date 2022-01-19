@@ -4,6 +4,7 @@ import com.example.recipeDatabase.model.entity.Recipe;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class RecipeCategoryDTO implements Serializable {
@@ -11,9 +12,9 @@ public class RecipeCategoryDTO implements Serializable {
     private String id;
     private String category;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Set<Recipe> recipes;
+    private List<RecipeDTO> recipes;
 
-    public RecipeCategoryDTO(String id, String category, Set<Recipe> recipes) {
+    public RecipeCategoryDTO(String id, String category, List<RecipeDTO> recipes) {
         this.id = id;
         this.category = category;
         this.recipes = recipes;
@@ -38,11 +39,11 @@ public class RecipeCategoryDTO implements Serializable {
         this.category = category;
     }
 
-    public Set<Recipe> getRecipes() {
+    public List<RecipeDTO> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
+    public void setRecipes(List<RecipeDTO> recipes) {
         this.recipes = recipes;
     }
 }

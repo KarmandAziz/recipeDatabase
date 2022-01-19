@@ -16,8 +16,8 @@ public interface DTOService {
 
     IngredientDTO toIngredientDTO(Ingredient ingredient);
 
-    RecipeCategoryDTO toFullCategoryDTO(RecipeCategory recipeCategory);
-    RecipeCategoryDTO toSmallCategoryDTO(RecipeCategory recipeCategory);
+    RecipeCategoryDTO toFullRecipeCategoryDTO(RecipeCategory recipeCategory);
+    RecipeCategoryDTO toSmallRecipeCategoryDTO(RecipeCategory recipeCategory);
 
     RecipeInstructionDTO toRecipeInstructionDTO(RecipeInstruction recipeInstruction);
 

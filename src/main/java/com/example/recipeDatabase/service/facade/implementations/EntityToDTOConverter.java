@@ -6,6 +6,7 @@ import com.example.recipeDatabase.service.facade.interfaces.DTOService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,7 +60,7 @@ public class EntityToDTOConverter implements DTOService {
         RecipeDTO recipeDTO = toSmallRecipeDTO(recipe);
         recipeDTO.setInstructions(toRecipeInstructionDTO(recipe.getInstruction()));
         List<RecipeCategoryDTO> recipeCategoryDTOS = recipe.getCategories().stream()
-                .map(this::toSmallCategoryDTO)
+                .map(this::toSmallRecipeCategoryDTO)
                 .collect(Collectors.toList());
 
         List<RecipeIngredientDTO> recipeIngredientDTOS = recipe.getRecipeIngredients().stream()
@@ -92,16 +93,22 @@ public class EntityToDTOConverter implements DTOService {
     }
 
     @Override
-    public RecipeCategoryDTO toFullCategoryDTO(RecipeCategory recipeCategory) {
+    public RecipeCategoryDTO toFullRecipeCategoryDTO(RecipeCategory recipeCategory) {
         if(recipeCategory == null) return null;
-        RecipeCategoryDTO recipeCategoryDTO = toSmallCategoryDTO(recipeCategory);
-        recipeCategoryDTO.setRecipes(recipeCategory.getRecipes());
+        RecipeCategoryDTO recipeCategoryDTO = toSmallRecipeCategoryDTO(recipeCategory);
+        List<RecipeDTO> recipeDTOS = new ArrayList<>();
+        if(!recipeCategory.getCategory().isEmpty()){
+            recipeDTOS = recipeCategory.getRecipes().stream()
+                    .map(this::toSmallRecipeDTO)
+                    .collect(Collectors.toList());
+        }
+        recipeCategoryDTO.setRecipes(recipeDTOS);
         return recipeCategoryDTO;
 
     }
 
     @Override
-    public RecipeCategoryDTO toSmallCategoryDTO(RecipeCategory recipeCategory) {
+    public RecipeCategoryDTO toSmallRecipeCategoryDTO(RecipeCategory recipeCategory) {
         if(recipeCategory == null) return null;
         RecipeCategoryDTO recipeCategoryDTO = new RecipeCategoryDTO();
         recipeCategoryDTO.setId(recipeCategory.getId());
