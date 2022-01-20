@@ -23,19 +23,19 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    @Secured({"ROLE_SUPER_ADMIN"})
+
     @PostMapping("/api/v1/users/admin")
     public ResponseEntity<AppUserDTO> createSuperAdmin(@Validated(OnPost.class) @RequestBody AppUserForm appUserForm) {
         return ResponseEntity.status(201).body(appUserService.create(appUserForm, UserRole.ROLE_SUPER_ADMIN));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN", "ROLE_CASUAL_ADMIN"})
+
     @PostMapping("/api/v1/users")
     public ResponseEntity<AppUserDTO> createCasualAdmin(@Validated(OnPost.class) @RequestBody AppUserForm appUserForm) {
         return ResponseEntity.status(201).body(appUserService.create(appUserForm, UserRole.ROLE_USER_ADMIN));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN"})
+
     @GetMapping("/api/v1/users")
     public ResponseEntity<?> find(
             @RequestParam(name = "search", defaultValue = "all") String search,
@@ -53,25 +53,25 @@ public class AppUserController {
         }
     }
 
-    @Secured({"ROLE_SUPER_ADMIN"})
+
     @PutMapping("/api/v1/users/{id}/role/add")
     public ResponseEntity<AppUserDTO> addRole(@PathVariable("id") String id, @RequestParam(name = "role") UserRole role){
         return ResponseEntity.ok(appUserService.addRole(id, role));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN"})
+
     @PutMapping("/api/v1/users/{id}/role/remove")
     public ResponseEntity<AppUserDTO> removeRole(@PathVariable("id") String id, @RequestParam(name = "role") UserRole role){
         return ResponseEntity.ok(appUserService.removeRole(id, role));
     }
 
-    @PreAuthorize("#id == authentication.principal.userId || hasRole('SUPER_ADMIN')")
+
     @PutMapping("/api/v1/users/{id}")
     public ResponseEntity<AppUserDTO> update(@PathVariable("id") String id, @Validated(OnPut.class) @RequestBody AppUserForm appUserForm){
         return ResponseEntity.ok(appUserService.update(id, appUserForm));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN"})
+
     @DeleteMapping("/api/v1/users/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id){
         appUserService.delete(id);

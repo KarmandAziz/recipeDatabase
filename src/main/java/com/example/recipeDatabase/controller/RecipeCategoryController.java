@@ -24,31 +24,31 @@ public class RecipeCategoryController {
     public RecipeCategoryController(RecipeCategoryService recipeCategoryService) {
         this.recipeCategoryService = recipeCategoryService;
     }
-    @Secured({"ROLE_SUPER_ADMIN","ROLE_CASUAL_ADMIN"})
+
     @PostMapping("/api/v1/recipe/category")
     public ResponseEntity<RecipeCategoryDTO> create(@Validated(OnPost.class) @RequestBody RecipeCategoryForm recipeCategoryForm){
         return ResponseEntity.status(201).body(recipeCategoryService.create(recipeCategoryForm));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN","ROLE_CASUAL_ADMIN"})
+
     @GetMapping("/api/v1/categories")
     public ResponseEntity<List<RecipeCategoryDTO>> find(){
         return ResponseEntity.ok(recipeCategoryService.findAll());
     }
 
-    @Secured({"ROLE_SUPER_ADMIN","ROLE_CASUAL_ADMIN"})
+
     @GetMapping("/api/v1/category/{id}")
     public ResponseEntity<RecipeCategoryDTO> findById(@PathVariable("id") String id){
         return ResponseEntity.ok(recipeCategoryService.findById(id));
     }
 
-    @PreAuthorize("#id == authentication.principal.categoryId || hasAnyRole('SUPER_ADMIN')")
+
     @PutMapping("/api/v1/category/{id}")
     public ResponseEntity<RecipeCategoryDTO> update(@PathVariable("id") String id, @Validated(OnPut.class) @RequestBody RecipeCategoryForm recipeCategoryForm){
         return ResponseEntity.ok(recipeCategoryService.update(id, recipeCategoryForm));
     }
 
-    @Secured({"ROLE_SUPER_ADMIN"})
+
     @DeleteMapping("/api/v1/category/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id){
         recipeCategoryService.delete(id);

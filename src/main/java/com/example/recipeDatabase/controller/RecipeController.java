@@ -24,7 +24,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @Secured({"ROLE_SUPER_ADMIN", "ROLE_CASUAL_ADMIN"})
+
     @PostMapping("/api/v1/recipes")
     public ResponseEntity<RecipeDTO> createRecipe(@Validated(OnPost.class) @RequestBody RecipeForm form){
         return ResponseEntity.status(201).body(
@@ -61,19 +61,19 @@ public class RecipeController {
 
         return ResponseEntity.ok(recipeDTOS);
     }
-    @Secured({"ROLE_CASUAL_ADMIN","ROLE_SUPER_ADMIN"})
+
     @GetMapping("/api/v1/recipes/{id}")
     public ResponseEntity<RecipeDTO> findById(@PathVariable("id") String id){
         return ResponseEntity.ok(recipeService.findById(id));
     }
 
-    @Secured({"ROLE_CASUAL_ADMIN","ROLE_SUPER_ADMIN"})
+
     @PutMapping("/api/v1/recipes/{id}")
     public ResponseEntity<RecipeDTO> update(@PathVariable("id") String id, @Validated(OnPut.class) @RequestBody RecipeForm recipeForm){
         return ResponseEntity.ok(recipeService.update(id, recipeForm));
     }
 
-    @Secured({"ROLE_CASUAL_ADMIN", "ROLE_SUPER_ADMIN"})
+
     @DeleteMapping("/api/v1/bookings/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id){
         recipeService.delete(id);

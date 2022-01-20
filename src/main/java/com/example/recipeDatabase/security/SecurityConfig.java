@@ -35,15 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        http.sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .csrf().disable().cors().configurationSource(new CorsConfigurationFactory())
+                    .csrf().disable().cors().configurationSource(new CorsConfigurationFactory())
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
-                .addFilter(new JWTTokenValidatorFilter(authenticationManager(), jwtUtil))
+                    .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
+                    .addFilter(new JWTTokenValidatorFilter(authenticationManager(), jwtUtil))
                 .authorizeRequests()
-                .antMatchers("/api/v1/public/register", "/api/v1/public/auth").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/api/v1/public/register", "/api/v1/public/auth").permitAll();
     }
 }
 

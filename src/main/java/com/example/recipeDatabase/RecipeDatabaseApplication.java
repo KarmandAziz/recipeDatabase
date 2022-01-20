@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,18 +25,24 @@ import static com.example.recipeDatabase.model.entity.UserRole.ROLE_SUPER_ADMIN;
 @SpringBootApplication
 public class RecipeDatabaseApplication {
 
-	public static void main(String[] args) {
-		/* Set<AppRole> admin = new HashSet<>();
-		admin.add(new AppRole(ROLE_SUPER_ADMIN));
-		List<AppUser> appUsers = Arrays.asList(
-				new AppUser(admin, "Karmand94", "Hanna123"));
-		JSONHandler jsonHandler = new JSONHandler();
-		jsonHandler.serializeToFile(appUsers, new File("admin.json")); */
 
+	public static void main(String[] args) {
 
 		SpringApplication.run(RecipeDatabaseApplication.class, args);
 
 
+
+
+	}
+
+	public static void userToJSON(){
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		Set<AppRole> admin = new HashSet<>();
+		admin.add(new AppRole(ROLE_SUPER_ADMIN));
+		List<AppUser> appUsers = Arrays.asList(
+				new AppUser(admin, "Admin1", bCryptPasswordEncoder.encode("Admin123")));
+		JSONHandler jsonHandler = new JSONHandler();
+		jsonHandler.serializeToFile(appUsers, new File("admin1.json"));
 	}
 
 }

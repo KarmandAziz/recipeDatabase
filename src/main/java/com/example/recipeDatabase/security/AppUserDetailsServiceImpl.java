@@ -40,6 +40,5 @@ public class AppUserDetailsServiceImpl implements UserDetailsService {
         }
         appUserDetails.setAuthorities(authoritySet);
         return appUserDetails;
-
     }
 }
