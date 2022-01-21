@@ -76,7 +76,7 @@ public class JWTUtil {
     public String fromAppUser(AppUser appUser){
         SecretKey key = Keys.hmacShaKeyFor(JWT_KEY.getBytes(StandardCharsets.UTF_8));
         return Jwts.builder()
-                .setIssuer("recipe-database")
+                .setIssuer(RECIPE_DB)
                 .setHeaderParam("type", "JWT")
                 .setSubject(appUser.getUsername())
                 .claim(AUTHORITIES, populateAuthorities(appUser))

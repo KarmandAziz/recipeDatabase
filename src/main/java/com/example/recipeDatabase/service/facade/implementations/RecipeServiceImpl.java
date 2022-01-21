@@ -46,10 +46,8 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public List<RecipeDTO> searchByRecipeName(String name) {
-        return recipeEntityService.searchByRecipeName(name).stream()
-                .map(dtoConverter::toSmallRecipeDTO)
-                .collect(Collectors.toList());
+    public RecipeDTO searchByRecipeName(String name) {
+        return dtoConverter.toSmallRecipeDTO(recipeEntityService.searchByRecipeName(name));
     }
 
     @Override

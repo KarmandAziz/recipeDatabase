@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface RecipeDAO extends JpaRepository<Recipe, String> {
@@ -14,7 +15,7 @@ public interface RecipeDAO extends JpaRepository<Recipe, String> {
     List<Recipe> findByRecipeNameContaining(@Param("recipeName")String recipeName);
 
     @Query("SELECT r FROM Recipe r WHERE UPPER(r.recipeName) LIKE UPPER(CONCAT('%',:name,'%'))")
-    List<Recipe> searchByRecipeName(@Param("name") String name);
+    Optional<Recipe> searchByRecipeName(@Param("name") String name);
 
     @Query("SELECT r.recipes FROM RecipeCategory r WHERE r.category = :category ")
     List<Recipe> searchByCategory(@Param("category") String category);

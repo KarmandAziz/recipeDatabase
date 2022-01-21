@@ -32,6 +32,8 @@ public class RecipeController {
         );
     }
 
+
+
     @GetMapping("/api/v1/recipes")
     public ResponseEntity<List<RecipeDTO>> find(
             @RequestParam(value = "search", defaultValue = "all") String search,
@@ -39,9 +41,6 @@ public class RecipeController {
     ){
         List<RecipeDTO> recipeDTOS;
         switch (search.toLowerCase()){
-            case "recipeName":
-                recipeDTOS = recipeService.searchByRecipeName(values.get(0));
-                break;
             case "recipeNameContaining":
                 recipeDTOS = recipeService.findByRecipeNameContaining(values.get(0));
                 break;

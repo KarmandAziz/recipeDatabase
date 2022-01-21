@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface RecipeEntityService extends GenericEntityService<Recipe, RecipeForm> {
@@ -14,7 +15,7 @@ public interface RecipeEntityService extends GenericEntityService<Recipe, Recipe
     Recipe addRecipeCategory(String id, String categoryId);
     Recipe removeRecipeCategory(String id, String categoryId);
     List<Recipe> findByRecipeNameContaining(String recipeName);
-    List<Recipe> searchByRecipeName(String name);
+    Recipe searchByRecipeName(String name);
     List<Recipe> searchByCategory(String category);
     List<Recipe> searchByAnyCategories(String... categories);
 }

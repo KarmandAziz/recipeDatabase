@@ -7,6 +7,7 @@ import com.example.recipeDatabase.model.entity.UserRole;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mashape.unirest.http.Unirest;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.URLEncoder;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -31,9 +33,10 @@ public class RecipeDatabaseApplication {
 		SpringApplication.run(RecipeDatabaseApplication.class, args);
 
 
-
-
 	}
+
+
+
 
 	public static void userToJSON(){
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

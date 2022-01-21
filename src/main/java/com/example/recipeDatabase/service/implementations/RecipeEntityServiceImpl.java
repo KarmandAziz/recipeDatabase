@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -105,8 +106,9 @@ public class RecipeEntityServiceImpl implements RecipeEntityService {
     }
 
     @Override
-    public List<Recipe> searchByRecipeName(String name) {
-        return recipeDAO.searchByRecipeName(name);
+    public Recipe searchByRecipeName(String name) {
+        return recipeDAO.searchByRecipeName(name)
+                .orElseThrow(() -> new AppResourceNotFoundException("Could not find recipe"));
     }
 
     @Override
