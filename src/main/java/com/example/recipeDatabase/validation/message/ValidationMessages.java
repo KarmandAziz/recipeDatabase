@@ -7,5 +7,5 @@ public class ValidationMessages {
     public static final String USERNAME_SIZE = "Must be between 6 and 100 chars";
     public static final String USERNAME_TAKEN = "This username is already taken";
     public static final String MANDATORY_FORM = "This field is mandatory";
-    public static final String UNIQUE_EMAIL = "This email is already taken";
+    public static final String UNIQUE_RECIPE = "This recipe is already exists";
 }
