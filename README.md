@@ -1,3 +1,3 @@
-# Recipe API / JPA assignment
+# RecipeAPI 
 
 by Karmand Aziz
